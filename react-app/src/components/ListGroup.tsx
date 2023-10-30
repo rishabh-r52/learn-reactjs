@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 
 function ListGroup() {
   let items = [
@@ -9,22 +9,28 @@ function ListGroup() {
     "Assassin's Creed II",
   ];
 
-  // items = [];
-  // if (items.length == 0) {
-  //   return <p>No element found</p>;
-  // }
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   // Message to be printed when items list is empty
   const EmptyMessage = items.length === 0 && <p>No Elements Found!</p>;
 
   // Item Click Event
-  const HandleClick = (event: MouseEvent) => {
-    console.log(event);
-  };
+  // const HandleClick = (event: MouseEvent) => {
+  //   console.log(event);
+  // };
 
   // Message to be printed when items list is not empty
-  const NonEmptyMessage = items.map((item) => (
-    <li className="list-group-item" onClick={HandleClick} key={item}>
+  const NonEmptyMessage = items.map((item, index) => (
+    <li
+      key={item}
+      className={
+        selectedIndex === index ? "list-group-item active" : "list-group-item"
+      }
+      onClick={() => {
+        setSelectedIndex(index);
+        console.log(event);
+      }}
+    >
       {item}
     </li>
   ));
