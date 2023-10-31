@@ -1,48 +1,83 @@
-// import Message from "./components/Message";
-import ListGroup from "./components/ListGroup";
+import Button from "./components/Button";
+import Alert from "./components/Alert";
+import { useState } from "react";
 
-function App() {
+const App = () => {
+  const [AlertVisibile, SetAlertVisibility] = useState(false);
+
+  // Button properties
+  const buttonText = "Click Me";
+  const buttonType = "primary";
+  const buttonFunction = () => {
+    SetAlertVisibility(true);
+  };
+
+  // Alert properties
+  const strongText = "Alert!";
+  const alertCloseFunction = () => {
+    SetAlertVisibility(false);
+  };
+
   return (
-    <div>
-      <ListGroup />
-    </div>
+    <>
+      <div>
+        <>
+          {AlertVisibile && (
+            <Alert alertStrong={strongText} onClose={alertCloseFunction}>
+              "This is a special alert component, It pops up when the button is
+              clicked and it also allows us to close the Alert."
+            </Alert>
+          )}
+
+          <Button
+            btnText={buttonText}
+            btnType={buttonType}
+            clickfunction={buttonFunction}
+          />
+        </>
+      </div>
+    </>
   );
-}
+};
 
 export default App;
 
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
+// import Alert from "./components/Alert";
+
+// const App = () => {
+//   return (
+//     <Alert>
+//       This is a sample alert message! <span>For Testing.</span>
+//     </Alert>
+//   );
+// };
+
+// export default App;
+
+// import ListGroup from "./components/ListGroup";
 
 // function App() {
-//   const [count, setCount] = useState(0)
+//   let items = [
+//     "The Last of Us",
+//     "God Of War",
+//     "The Witcher 3",
+//     "Grand Theft Auto V",
+//     "Assassin's Creed II",
+//   ];
+
+//   let heading = "Games";
+
+//   const selectItemHandle = (item: string) => console.log(item);
 
 //   return (
-//     <>
-//       <div>
-//         <a href="https://vitejs.dev" target="_blank">
-//           <img src={viteLogo} className="logo" alt="Vite logo" />
-//         </a>
-//         <a href="https://react.dev" target="_blank">
-//           <img src={reactLogo} className="logo react" alt="React logo" />
-//         </a>
-//       </div>
-//       <h1>Vite + React</h1>
-//       <div className="card">
-//         <button onClick={() => setCount((count) => count + 1)}>
-//           count is {count}
-//         </button>
-//         <p>
-//           Edit <code>src/App.tsx</code> and save to test HMR
-//         </p>
-//       </div>
-//       <p className="read-the-docs">
-//         Click on the Vite and React logos to learn more
-//       </p>
-//     </>
-//   )
+//     <div>
+//       <ListGroup
+//         items={items}
+//         heading={heading}
+//         selectItemHandle={selectItemHandle}
+//       />
+//     </div>
+//   );
 // }
 
-// export default App
+// export default App;
